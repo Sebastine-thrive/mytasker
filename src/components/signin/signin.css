@@ -1,0 +1,87 @@
+.sign-in-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.sign-in-wrapper h2 {
+  text-align: center;
+}
+
+.sign-in-wrapper form {
+  width: auto;
+  max-width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  background-color: var(--primaryDark);
+  border: 1px solid var(--secondaryDark);
+  padding: 20px;
+  margin: 0 0.5rem;
+  border-radius: 0.8rem;
+}
+.sign-in-wrapper form input {
+   flex: 1 0 130px;
+    background-color: var(--primaryAsh);
+  border-radius: 5px;
+  height: 2rem;
+  width: auto;
+  margin: 1.2rem 8px;
+    flex: 1 0 130px;
+  background-color: var(--primaryAsh);
+  color: white;
+  border: none;
+    padding: 3px 6px;
+  
+}
+
+.sign-in-wrapper form input::placeholder {
+  color: var(--secondaryAsh);
+  transition: all 1s ease;
+}
+
+.sign-in-wrapper form  button {
+  background-color: var(--green);
+  color: var(--white);
+   flex: 1 0 40px;
+    margin:8px;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  word-spacing: 5px;
+}
+
+.sign-in-wrapper form input:focus::placeholder {
+  transform: translate(0, -100%);
+  font-size: 0.8em;
+  opacity: 1;
+}
+
+.sign-in-wrapper .sign-up-redirect {
+  width: auto;
+  max-width: 500px;
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  margin-top: 1rem;
+  letter-spacing: 0.7px;
+  word-spacing: 2px;
+  text-align: center;
+}
+
+.sign-in-wrapper .sign-up-redirect a {
+  color: var(--green);
+}
+
+.error {
+  margin-top: 0.5rem;
+  width: auto;
+  max-width: 500px;
+  text-align: center;
+  color: var(--mainRed);
+  font-size: 0.7rem;
+}

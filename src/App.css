@@ -1,38 +1,81 @@
-.App {
-  text-align: center;
+ /* CSS for syncfusion tooltip */
+ @import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+  @import "../node_modules/@syncfusion/ej2-react-popups/styles/material.css";
+
+/* 
+====== 
+Variables 
+======
+*/
+:root {
+  --primaryLightColor: #d4e6a5;
+  --primaryBlue: #126dfe;
+  --primaryDark: #232429;
+  --secondaryDark: #505358;
+  --primaryAsh: #414248;
+  --secondaryAsh: #b5b8bd;
+  --white: #fff;
+  --green: #008000;
+  --ashGreen: #becebf;
+  --offWhite: #f7f7f7;
+  --yellow: #ffff33;
+  --mainOverlay: rgba(35, 10, 36, 0.4);
+  --mainRed: #bd0303;
+  --orange: #ff5733;
+  --mainTransition: all 0.3s linear;
+  --marginLeft: 3rem;
+  --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+  --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+}
+/* 
+====== 
+Global Styles 
+======
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body {
+  color: var(--mainBlack);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  line-height: 1.4;
+  font-size: 1rem;
+  font-weight: 300;
 }
 
-.App-link {
-  color: #61dafb;
+h1,
+h2 {
+  font-family: "Outfit", sans-serif;
+  margin-bottom: 1.25rem;
+  letter-spacing: var(--mainSpacing);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1 {
+  font-size: 3rem;
+}
+
+h3,
+h4,
+h5 {
+  font-family: "Manrope", sans-serif;
+} 
+
+p {
+  font-family: "DM Sans", sans-serif;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: none;
 }

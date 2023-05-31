@@ -1,0 +1,83 @@
+.sign-up-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.sign-up-wrapper h2{
+  text-align: center;
+}
+
+.sign-up-wrapper form {
+  width: auto;
+  max-width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  background-color: var(--primaryDark);
+  border: 1px solid var(--secondaryDark);
+  padding: 20px;
+  margin: 0 0.5rem;
+  border-radius: 0.8rem;
+}
+
+.sign-up-wrapper form input {
+  background-color: var(--primaryAsh);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  flex: 1 0 130px;
+  height: 2rem;
+  margin: 8px;
+  padding: 3px 6px;
+}
+
+.sign-up-wrapper form input::placeholder {
+  color: var(--secondaryAsh);
+  transition: all 1s ease;
+}
+
+.sign-up-wrapper form button {
+  background-color: var(--primaryBlue);
+  color: var(--white);
+  flex: 1 0 40px;
+  margin: 8px;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  word-spacing: 5px;
+}
+
+.sign-up-wrapper form input:focus::placeholder {
+  transform: translate(0, -100%);
+  font-size: 0.8em;
+  opacity: 1;
+}
+
+.sign-up-wrapper .sign-in-redirect {
+   width: auto;
+  max-width: 500px;
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  letter-spacing: 0.7px;
+  word-spacing: 2px;
+  text-align: center;
+}
+
+.sign-up-wrapper .sign-in-redirect a {
+  color: var(--primaryBlue);
+}
+
+.error {
+  margin-top: 0.5rem;
+  width: auto;
+  max-width: 500px;
+  text-align: center;
+  color: var(--mainRed);
+  font-size: 0.7rem;
+}

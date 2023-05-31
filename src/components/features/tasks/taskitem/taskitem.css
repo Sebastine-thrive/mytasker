@@ -1,0 +1,76 @@
+.taskitem-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.taskform-content {
+  width: 70%;
+  text-align: center;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  margin-right: 0.8rem;
+}
+
+.task-item-title {
+  text-align: start;
+  color: var(--primaryBlue);
+}
+
+.taskitem-wrapper .icons {
+  width: 30%;
+  min-width: 8rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  cursor: pointer;
+  margin: 0 0.3rem;
+}
+/* 
+.taskitem-wrapper .icons {
+    background-color: var(--white);
+    padding: 8px;
+    border-radius: 50%;
+} */
+
+.taskitem-wrapper .icons .icon {
+  background-color: var(--white);
+  padding: 3px;
+  border-radius: 50%;
+  width: auto;
+}
+
+.taskitem-wrapper .icons .delete-icon {
+  color: var(--mainRed);
+}
+/* 
+
+.taskitem-wrapper .icons .edit-icon {
+  padding: 3px;
+  border-radius: 50%;
+} */
+
+.complete-signal{
+  /* color: var(--white); */
+  background-color: var(--green);
+  width: 10px;
+  border-radius: 50%;
+}
+
+.delete-button {
+  cursor: pointer;
+  position: relative;
+}
+
+.taskitem-wrapper .icons .edit-icon {
+  color: var(--white);
+  padding: 0 2px;
+  background: none;
+}
+
+.taskitem-wrapper .icons .markcomplete-icon {
+  color: var(--green);
+}
+
+.taskform-content p {
+  text-align: start;
+}
