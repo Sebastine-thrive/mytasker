@@ -15,22 +15,22 @@
   min-width: 460px;
   background-color: var(--primaryDark);
   color: var(--white);
-    border-top: 10px solid var(--yellow);
-border-top-left-radius: 8px;
+  border-top: 10px solid var(--primaryBlue);
+  border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
   margin-bottom: 1rem;
   padding: 5px;
   text-transform: capitalize;
-   letter-spacing: 0.8px;
+  letter-spacing: 0.8px;
   word-spacing: 4px;
 }
 
 .loggedin-username {
-    /* font-family: "DM Sans", sans-serif; */
+  /* font-family: "DM Sans", sans-serif; */
   font-size: 1.4rem;
-  color: var(--yellow);
+  color: var(--primaryBlue);
 }
 
 .taskform-container {

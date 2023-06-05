@@ -13,6 +13,7 @@ import { v4 as uuidv4 } from "uuid";
 import { RootState } from "../../store";
 import { Task } from "../features/tasks/TasksSlice";
 import { addTask, editTask } from "../features/tasks/TasksSlice";
+import { toast, ToastContainer } from "react-toastify";
 import { MdCancel } from "react-icons/md";
 
 import "./taskform.css";
@@ -127,6 +128,14 @@ const TaskForm: React.FC<UserPageProps> = ({
     []
   );
 
+  const addTaskNotify = () => {
+    toast("Task added successfully!");
+  };
+
+  const editTaskNotify = () => {
+    toast("Task successfully edited!");
+  };
+
   // Add Task dispatch function
   const handleAddTask = (event: FormEvent<HTMLFormElement>) => {
     event?.preventDefault();
@@ -154,11 +163,11 @@ const TaskForm: React.FC<UserPageProps> = ({
     setTaskCreationError(false);
     setTaskTitle("");
     setTaskDescription("");
+    addTaskNotify();
   };
 
   //  Task editing dispatch function
-
-  const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleEditTaskForm = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setEditedTitle(editedTitle);
     setEditedDescription(editedDescription);
@@ -172,9 +181,12 @@ const TaskForm: React.FC<UserPageProps> = ({
       })
     );
 
-     setModalIsOpen(false);
-     setAddingTask(null);
-     setEditingTask(null);
+    // i want to delay this modal closing by 2seconds
+    setModalIsOpen(false);
+    //
+    setAddingTask(null);
+    setEditingTask(null);
+    // editTaskNotify();
   };
 
   // Close add task modal
@@ -198,7 +210,7 @@ const TaskForm: React.FC<UserPageProps> = ({
             />
           </div>
 
-          <form onSubmit={editingTask ? handleFormSubmit : handleAddTask}>
+          <form onSubmit={editingTask ? handleEditTaskForm : handleAddTask}>
             <input
               placeholder="Task title"
               name="taskTitle"
@@ -236,6 +248,8 @@ const TaskForm: React.FC<UserPageProps> = ({
           )}
         </div>
       )}
+
+      <ToastContainer position="top-center" autoClose={1000} />
     </div>
   );
 };

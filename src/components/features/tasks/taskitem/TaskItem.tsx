@@ -1,4 +1,4 @@
-import React, { SetStateAction, Dispatch } from "react";
+import React, { useState, SetStateAction, Dispatch } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { RootState } from "../../../../store";
@@ -15,6 +15,8 @@ import {
   markTaskAsCompleted,
   markTaskAsUncompleted,
 } from "../../categories/CategoriesSlice";
+
+import { Tooltip as ReactTooltip, Tooltip } from "react-tooltip";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -48,6 +50,7 @@ interface TaskItemProps {
   setEditingTask: React.Dispatch<React.SetStateAction<boolean | null>>;
   onEditTask: EditTaskHandler;
   selectedCategory: string | null;
+  ongoingTasks: Task[];
 }
 
 const TaskItem: React.FC<TaskItemProps> = ({
@@ -65,6 +68,34 @@ const TaskItem: React.FC<TaskItemProps> = ({
   onEditTask,
   selectedCategory,
 }) => {
+  const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null);
+
+  const [deleteTaskModalIsOpen, setDeleteTaskModalIsOpen] =
+    useState<boolean>(false);
+
+  const [MarkTaskCompleteModalIsOpen, setMarkTaskCompleteModalIsOpen] =
+    useState<boolean>(false);
+
+  const [markTaskUncompletedModalIsOpen, setMarkTaskUncompletedModalIsOpen] =
+    useState<boolean>(false);
+
+  const dispatch = useDispatch();
+
+  const handleDeleteTaskModal = (taskId: string) => {
+    setSelectedTaskId(taskId);
+    setDeleteTaskModalIsOpen(true);
+  };
+
+  const handleCompleteTaskModal = (userId: number, taskId: string) => {
+    setSelectedTaskId(taskId);
+    setMarkTaskCompleteModalIsOpen(true);
+  };
+
+  const handleUncompletedTaskModal = (userId: number, taskId: string) => {
+    setSelectedTaskId(taskId);
+    setMarkTaskUncompletedModalIsOpen(true);
+  };
+
   const users = useSelector((state: RootState) => state.UserReducer.users);
 
   const loggedInUsername: string | null = useSelector(
@@ -79,7 +110,9 @@ const TaskItem: React.FC<TaskItemProps> = ({
     console.log("User not found");
   }
 
-  const dispatch = useDispatch();
+  const completedTasks = useSelector(
+    (state: RootState) => state.CategoryReducer.completedTasks[userId] || []
+  );
 
   const tasks = useSelector(
     (state: RootState) => state.TaskReducer[userId] || []
@@ -87,15 +120,20 @@ const TaskItem: React.FC<TaskItemProps> = ({
 
   const handleDeleteTask = (userId: number, taskId: string) => {
     dispatch(deleteTask({ userId, taskId }));
+    setDeleteTaskModalIsOpen(false);
   };
 
   const handleCompleteTask = (userId: number, task: Task) => {
     dispatch(markTaskAsCompleted({ userId, task }));
+    setMarkTaskCompleteModalIsOpen(false);
   };
 
   const handleUncompleteTask = (userId: number, task: Task) => {
     dispatch(markTaskAsUncompleted({ userId, task }));
+    setMarkTaskUncompletedModalIsOpen(false);
+    setMarkTaskCompleteModalIsOpen(false);
   };
+  
   const handleEditingFunctions = (taskId: string) => {
     onEditTask(taskId);
     setEditingTask(true);
@@ -103,11 +141,22 @@ const TaskItem: React.FC<TaskItemProps> = ({
     setAddingTask(null);
   };
 
+  // console.log(taskDeleteModalIsOpen);
+  // console.log(selectedTaskId);
+
+  // const taskIdToCheck = task.id;
+
+  const isTaskCompleted = completedTasks.some((t) => task.id === t.id);
+
+  console.log(isTaskCompleted); // Output: true or false
+
   return (
     <div className="taskitem-wrapper">
       <div className="taskform-content">
         <h4 className="task-item-title">
-          <span className="completed-signal"> </span>
+          <span className={`signal  ${isTaskCompleted ? "green" : "blue"} `}>
+            {" "}
+          </span>
           {task.title}{" "}
         </h4>
         <p> {task.description}</p>
@@ -115,34 +164,142 @@ const TaskItem: React.FC<TaskItemProps> = ({
 
       {selectedCategory === "all" && (
         <div className="icons">
-          <div className="delete-button">
-            <MdCancel
-              size={28}
-              className="icon delete-icon"
-              onClick={() => handleDeleteTask(userId, task.id)}
-            />
-            {/* <span className="delete-hover-text"> Delete task</span> */}
-          </div>
+          {!isTaskCompleted ? (
+            <a data-tooltip-id="tooltip" data-tooltip-content="Delete task ">
+              <div className="delete-button">
+                <MdCancel
+                  size={28}
+                  className="icon delete-icon"
+                  onClick={() => handleDeleteTaskModal(task.id)}
+                />
 
-          <div className="icon edit-icon">
-            {/* <FaPen */}
-            <BsFillPencilFill
-              size={26}
-              onClick={() => handleEditingFunctions(task.id)}
-              className="icon edit-icon"
-            />
-          </div>
+                {deleteTaskModalIsOpen ? (
+                  <div
+                    className={`task-modal delete-modal ${
+                      selectedTaskId === task.id ? "show" : "hidden"
+                    }`}
+                  >
+                    <h5> Delete Task?</h5>
+                    <div className="task-options">
+                      {" "}
+                      <p
+                        className="option"
+                        onClick={() => setDeleteTaskModalIsOpen(false)}
+                      >
+                        No
+                      </p>{" "}
+                      <p
+                        className="option"
+                        onClick={() => handleDeleteTask(userId, task.id)}
+                      >
+                        {" "}
+                        Yes{" "}
+                      </p>
+                    </div>{" "}
+                  </div>
+                ) : null}
+              </div>
+            </a>
+          ) : null}
 
-          <TooltipComponent content="mark task complete" position="TopCenter">
-            <div>
-              <FaCheckCircle
-                size={28}
-                // onClick={() => dispatchMarkTaskAsCompleted(userId, task.id)}
-                onClick={() => handleCompleteTask(userId, task)}
-                className=" icon markcomplete-icon"
-              />
-            </div>
-          </TooltipComponent>
+          <Tooltip id="tooltip" />
+
+          {!isTaskCompleted ? (
+            <a data-tooltip-id="tooltip" data-tooltip-content="Edit task ">
+              <div className="icon edit-icon">
+                <BsFillPencilFill
+                  size={26}
+                  onClick={() => handleEditingFunctions(task.id)}
+                  className="icon edit-icon"
+                />
+              </div>
+            </a>
+          ) : null}
+          <Tooltip id="tooltip" />
+
+          {isTaskCompleted ? (
+            <a
+              data-tooltip-id="tooltip"
+              data-tooltip-content="Mark task uncompleted"
+            >
+              <div className="complete-button">
+                <FaCheckCircle
+                  size={28}
+                  onClick={() => handleUncompletedTaskModal(userId, task.id)}
+                  className=" icon markuncomplete-icon"
+                />
+
+                {markTaskUncompletedModalIsOpen ? (
+                  <div
+                    className={`task-modal mark-uncomplete-modal ${
+                      selectedTaskId === task.id ? "show" : "hidden"
+                    }`}
+                  >
+                    <h5> Reverse completed task as uncompleted ?</h5>
+                    <div className="task-options">
+                      {" "}
+                      <p
+                        className="option"
+                        onClick={() => setMarkTaskUncompletedModalIsOpen(false)}
+                      >
+                        No
+                      </p>{" "}
+                      <p
+                        className="option"
+                        onClick={() => handleUncompleteTask(userId, task)}
+                      >
+                        {" "}
+                        Yes{" "}
+                      </p>
+                    </div>{" "}
+                  </div>
+                ) : null}
+              </div>
+            </a>
+          ) : null}
+          <Tooltip id="tooltip" />
+
+          {!isTaskCompleted ? (
+            <a
+              data-tooltip-id="tooltip"
+              data-tooltip-content="Mark task complete"
+            >
+              <div className="complete-button">
+                <FaCheckCircle
+                  size={28}
+                  onClick={() => handleCompleteTaskModal(userId, task.id)}
+                  className=" icon markcomplete-icon"
+                />
+
+                {MarkTaskCompleteModalIsOpen ? (
+                  <div
+                    className={`task-modal mark-complete-modal ${
+                      selectedTaskId === task.id ? "show" : "hidden"
+                    }`}
+                  >
+                    <h5> Mark task as complete ?</h5>
+                    <div className="task-options">
+                      {" "}
+                      <p
+                        className="option"
+                        onClick={() => setMarkTaskCompleteModalIsOpen(false)}
+                      >
+                        No
+                      </p>{" "}
+                      <p
+                        className="option"
+                        onClick={() => handleCompleteTask(userId, task)}
+                      >
+                        {" "}
+                        Yes{" "}
+                      </p>
+                    </div>{" "}
+                  </div>
+                ) : null}
+              </div>
+            </a>
+          ) : null}
+          <Tooltip id="tooltip" />
         </div>
       )}
     </div>

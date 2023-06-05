@@ -119,7 +119,7 @@ const TaskComponent: FC<UserPageProps> = ({
                 <h3 className="tasks-number">{allTasks.length} task</h3>
               )}
               {allTasks.length > 1 && (
-                <h3 className="tasks-number">{allTasks.length} tasks</h3>
+                <h3 className="tasks-number"> {selectedCategory} {" "} {allTasks.length} tasks</h3>
               )}
             </>
           )}
@@ -165,10 +165,10 @@ const TaskComponent: FC<UserPageProps> = ({
               )}
             </>
           )}
-
+{/* 
           <div className="task-category">
             {selectedCategory === "all" ? <h3> {selectedCategory} </h3> : null}
-          </div>
+          </div> */}
 
           <div className="categories-wrapper">
             <h3
@@ -197,7 +197,7 @@ const TaskComponent: FC<UserPageProps> = ({
           </div>
         </div>
 
-        <div>
+        <div className="tasks">
           {tasksToRender.map((task) => (
             <TaskItem
               key={task.id}
@@ -214,6 +214,7 @@ const TaskComponent: FC<UserPageProps> = ({
               setModalIsOpen={setModalIsOpen}
               onEditTask={onEditTask}
               selectedCategory={selectedCategory}
+              ongoingTasks = {ongoingTasks}
             />
           ))}
         </div>

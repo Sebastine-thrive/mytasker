@@ -31,8 +31,7 @@
   justify-content: space-between;
   overflow-x: hidden;
   padding: 0.5rem 1rem;
-  border-top: 10px solid var(--yellow);
-  border-bottom: 10px solid var(--yellow);
+  border-bottom: 10px solid var(--primaryBlue);
 }
 
 /* .task-categories-container .category-heading, */
@@ -40,6 +39,12 @@
   height: 4rem;
   padding: 0.5rem;
   border-bottom: 2px solid var(--white);
+}
+
+.task-main-container .tasks {
+  /* overflow-y: scroll; */
+  height: auto;
+  /* min-height: 60vh; */
 }
 
 

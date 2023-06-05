@@ -8,6 +8,8 @@ import React, {
 import { Link } from "react-router-dom";
 import { RootState } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
+import { toast, ToastContainer } from "react-toastify";
+
 import { addUser } from "../features/users/UserSlice";
 
 //  CSS file for styling
@@ -27,6 +29,12 @@ const SignUp = () =>
     const [password, setPassword] = useState<string>("");
 
     const [counter, setCounter] = useState<number>(1);
+
+
+  const signUpNotify = () => {
+    toast("Nice! You have successfully signed up. Now Sign in");
+  };
+
 
     function UniqueIdGenerator() {
       const generateUniqueId = (): number => {
@@ -75,7 +83,7 @@ const SignUp = () =>
           password,
         };
         dispatch(addUser(user));
-        console.log(user.id);
+        signUpNotify();
       }
     };
     const inputRef = useRef<HTMLInputElement>(null);
@@ -135,6 +143,7 @@ const SignUp = () =>
           Have an account already?
           <Link to="/signin"> Sign in </Link>
         </p>
+        <ToastContainer position="top-center" autoClose={3000} />
       </div>
     );
   };
