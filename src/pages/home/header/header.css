@@ -1,16 +1,27 @@
-.container{
-    display: flex;
-    margin-left: var(--marginLeft);
-    align-items: center;
+.container {
+  display: flex;
+  margin-left: var(--marginLeft);
+  align-items: center;
 }
 
 .logo p {
-    font-size: 2rem;
-    font-weight: 800;
+  font-size: 2rem;
+  font-weight: 800;
 }
 
 .header-sign-in {
-    margin-left: 40vw;
-    font-size: 1.5rem;
-    font-weight: 500;
+  margin-left: 40vw;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+@media (max-width: 541px) {
+  .container {
+      margin-left: 0;
+    justify-content: center;
+  }
+
+  .header-sign-in {
+    display: none;
+  }
 }

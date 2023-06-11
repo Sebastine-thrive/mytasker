@@ -1,34 +1,21 @@
 import React, { useState, SetStateAction, Dispatch } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { RootState } from "../../../../store";
-import { addTask, editTask, deleteTask } from "../TasksSlice";
+import { deleteTask } from "../TasksSlice";
 import { MdCancel } from "react-icons/md";
-import { FaPen, FaCheckCircle } from "react-icons/fa";
-import { CiEdit } from "react-icons/ci";
+import { FaCheckCircle } from "react-icons/fa";
 import { BsFillPencilFill } from "react-icons/bs";
-import Tippy from "@tippyjs/react";
 
 import "./taskitem.css";
-import { dispatchMarkTaskAsCompleted } from "../TasksSlice";
 import {
   markTaskAsCompleted,
   markTaskAsUncompleted,
 } from "../../categories/CategoriesSlice";
 
-import { Tooltip as ReactTooltip, Tooltip } from "react-tooltip";
-
-import { ToastContainer, toast } from "react-toastify";
+import { Tooltip } from "react-tooltip";
 import "react-toastify/dist/ReactToastify.css";
 
-// import { markTaskAsCompleted } from "../../c";
-
 type EditTaskHandler = (taskId: string) => void;
-
-interface EditProps {
-  userId: number;
-  updatedTask: Task;
-}
 
 interface Task {
   id: string;
@@ -38,10 +25,7 @@ interface Task {
 
 interface TaskItemProps {
   task: Task;
-  modalIsOpen: boolean | null;
   setModalIsOpen: Dispatch<SetStateAction<boolean | null>>;
-  addingTask: boolean | null;
-  editingTask: boolean | null;
   editedTitle: string;
   editedDescription: string;
   setEditedTitle: React.Dispatch<React.SetStateAction<string>>;
@@ -54,15 +38,8 @@ interface TaskItemProps {
 }
 
 const TaskItem: React.FC<TaskItemProps> = ({
-  editedTitle,
-  editedDescription,
-  setEditedTitle,
-  setEditedDescription,
   task,
-  modalIsOpen,
   setModalIsOpen,
-  addingTask,
-  editingTask,
   setAddingTask,
   setEditingTask,
   onEditTask,
@@ -114,10 +91,6 @@ const TaskItem: React.FC<TaskItemProps> = ({
     (state: RootState) => state.CategoryReducer.completedTasks[userId] || []
   );
 
-  const tasks = useSelector(
-    (state: RootState) => state.TaskReducer[userId] || []
-  );
-
   const handleDeleteTask = (userId: number, taskId: string) => {
     dispatch(deleteTask({ userId, taskId }));
     setDeleteTaskModalIsOpen(false);
@@ -133,18 +106,13 @@ const TaskItem: React.FC<TaskItemProps> = ({
     setMarkTaskUncompletedModalIsOpen(false);
     setMarkTaskCompleteModalIsOpen(false);
   };
-  
+
   const handleEditingFunctions = (taskId: string) => {
     onEditTask(taskId);
     setEditingTask(true);
     setModalIsOpen(true);
     setAddingTask(null);
   };
-
-  // console.log(taskDeleteModalIsOpen);
-  // console.log(selectedTaskId);
-
-  // const taskIdToCheck = task.id;
 
   const isTaskCompleted = completedTasks.some((t) => task.id === t.id);
 
@@ -159,7 +127,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
           </span>
           {task.title}{" "}
         </h4>
-        <p> {task.description}</p>
+        <p className="task-item-description"> {task.description}</p>
       </div>
 
       {selectedCategory === "all" && (

@@ -1,7 +1,8 @@
 import React from "react";
 import Header from "./header/Header";
 import { Link } from "react-router-dom";
-import taskImage from "./../../assets/images/golf_player.gif";
+import { motion } from "framer-motion";
+import taskImage from "./../../assets/images/golf.png";
 import "./homepage.css";
 import Button from "../../components/commons/button/Button";
 
@@ -11,13 +12,22 @@ export default function HomePage() {
       <Header />
       <div className="body">
         <div className="intro">
-          <h1>
-            <span> Create your tasks, </span> <br />
-            <span> manage them, </span> <br />
+          <motion.h1
+            initial={{ x: 50, opacity: 0.7 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.1, duration: 3 }}
+          >
+            <span> Create your tasks,</span> <br />
+            <span> manage them,</span> <br />
             <span> achieve your goals.</span>
-          </h1>
+          </motion.h1>
 
-          <div className="links">
+          <motion.div
+            className="links"
+            initial={{ x: 100, opacity: 0.7 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.6, duration: 4 }}
+          >
             <div className="home-sign-up">
               <Link to="/signup">
                 <Button
@@ -32,7 +42,7 @@ export default function HomePage() {
             <Link to="/signin">
               <p className="sign_in">SIGN IN</p>
             </Link>
-          </div>
+          </motion.div>
         </div>
 
         <div className="intro-image">

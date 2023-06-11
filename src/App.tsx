@@ -1,4 +1,4 @@
-import React, {useState, ReactNode } from "react";
+import React, { useState, ReactNode } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import HomePage from "./pages/home/HomePage";
@@ -13,13 +13,10 @@ import SignInPage from "./pages/signin/SignInPage";
 //   children: ReactNode ;
 // }
 
-
 const App: React.FC = () => {
-  const [userId, setUserId ] = useState<number | null>(null)
+  const [userId, setUserId] = useState<number | null>(null);
   const [isLoggedIn, setisLoggedIn] = useState<boolean | null>(null);
-    const [counter, setCounter] = useState<number>(1);
-
-
+  const [counter, setCounter] = useState<number>(1);
 
   //Protectd Routes
 
@@ -36,21 +33,17 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
 
-          <Route path="/signup" element={<SignUpPage 
-          userId ={userId}
-          setUserId = {setUserId}
-          />} />
+          <Route
+            path="/signup"
+            element={<SignUpPage userId={userId} setUserId={setUserId} />}
+          />
 
           <Route
             path="/signin"
-            element={<SignInPage 
-              setisLoggedIn={setisLoggedIn} 
-              />}
+            element={<SignInPage setisLoggedIn={setisLoggedIn} />}
           />
 
-          <Route path="/user" element={<UserPage 
-         
-          />} />
+          <Route path="/user" element={<UserPage />} />
 
           {/* <Route
             path="/userpage"

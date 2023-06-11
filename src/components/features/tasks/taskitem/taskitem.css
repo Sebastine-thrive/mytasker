@@ -9,12 +9,21 @@
   padding: 0.6rem;
   margin-bottom: 1rem;
   margin-right: 0.8rem;
+  transition: all 0.5s ease;
 }
 
 .task-item-title {
   text-align: start;
   color: var(--primaryBlue);
+  font-weight: 750;
   display: flex;
+}
+
+.task-item-description {
+  margin-left: 15px;
+  color: var(--yellow);
+  font-weight: 500;
+  text-transform: capitalize;
 }
 
 .signal {
@@ -121,7 +130,7 @@
 }
 
 .taskitem-wrapper .icons .edit-icon {
-  color: var(--white);
+  color: var(--primaryDark);
   padding: 0 2px;
   background: none;
 }
@@ -140,4 +149,35 @@
 
 #tooltip {
   font-size: 15px;
+}
+
+/* Media Queries */
+
+@media (max-width: 415px) {
+  .taskitem-wrapper {
+    flex-direction: column;
+    width: 100%;
+    border: 2px dotted var(--white);
+    margin-bottom: 0.5rem;
+
+    /* align-items: start; */
+  }
+
+  .taskform-content {
+    width: 100%;
+    margin-right: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .taskitem-wrapper .icons {
+    /* display: none; */
+    width: 50%;
+    margin: 0 0.2rem;
+
+    min-width: 0;
+  }
+
+  .signal {
+    min-width: 10px;
+  }
 }

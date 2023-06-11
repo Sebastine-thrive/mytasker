@@ -9,6 +9,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { updateCurrentUser } from "../features/currentuser/CurrentUser";
 import { RootState } from "../../store";
+import { motion } from "framer-motion";
+
 import "./signin.css";
 
 interface ComponentProps {
@@ -132,7 +134,12 @@ const SignIn: React.FC<ComponentProps> = ({ setisLoggedIn }) => {
   };
 
   return (
-    <div className="sign-in-wrapper">
+    <motion.div
+      className="sign-in-wrapper"
+      initial={{ x: 100, opacity: 0.7 }}
+      whileInView={{ x: 0, opacity: 1 }}
+      transition={{ delay: 0.3, duration: 2 }}
+    >
       <h2> Access your account</h2>
 
       <form onSubmit={handleSubmit}>
@@ -183,7 +190,7 @@ const SignIn: React.FC<ComponentProps> = ({ setisLoggedIn }) => {
         Don't have an account? Please
         <Link to="/signup"> Sign up </Link>
       </p>
-    </div>
+    </motion.div>
   );
 };
 

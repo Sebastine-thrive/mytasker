@@ -1,20 +1,33 @@
+.home {
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  overflow-x: hidden;
+}
+
 .home .body {
+  width: 100%;
+  height: 100%;
   display: flex;
-  margin-top: 7rem;
+  align-items: center;
   margin-left: var(--marginLeft);
-  /* font-family: "Manrope", sans-serif; */
-  /* font-family: "DM Sans", sans-serif; */
   font-family: "Outfit", sans-serif;
+  overflow-x: hidden;
+}
+
+.body .intro {
+  width: 50%;
 }
 
 .body .intro h1 {
+  width: 100%;
   background: linear-gradient(to right, #126dfe, #008000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 2.5rem;
   font-weight: 800;
   margin-right: 5rem;
-  line-height: 5rem;
+  line-height: 6rem;
 }
 
 .body .intro .links {
@@ -27,10 +40,127 @@
 }
 
 .body .intro-image {
-  margin-left: 5rem;
+  width: 50%;
+  margin-left: -2rem;
 }
 .sign_in {
   font-size: 1rem;
   text-align: center;
   font-weight: 600;
+}
+
+/* Media queries */
+
+@media (min-height: 1366px) {
+  .home {
+    height: 60vh;
+  }
+
+  .home .body {
+    width: 100%;
+    margin-top: 7rem;
+  }
+
+  .body .intro h1 {
+    line-height: 8rem;
+  }
+}
+
+/* @media  (min-width:1301px) {} */
+
+/* @media  (max-width:1300px) {} */
+
+/* @media  (max-width:1025px) {} */
+
+/* @media(max-width: 991px) {} */
+
+@media (max-width: 821px) {
+  .body .intro-image {
+    margin-left: -6rem;
+  }
+}
+
+@media (max-width: 769px) {
+  .home {
+    width: 100vw;
+  }
+
+  .home .body {
+    width: 100%;
+  }
+
+  .body .intro h1 {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  .body .intro-image {
+    margin-left: -7rem;
+  }
+}
+
+@media (max-width: 541px) {
+  .home .body {
+    margin-left: 0;
+  }
+
+  .body .intro {
+    width: 100%;
+    margin-left: 5rem;
+  }
+
+  .links {
+    width: 100vw;
+    text-align: center;
+  }
+
+  .body .intro-image {
+    display: none;
+  }
+}
+
+@media (max-width: 415px) {
+  .home .body {
+    margin-left: 0;
+  }
+
+  .body .intro {
+    margin-left: 3rem;
+  }
+}
+
+@media (max-width: 376px) {
+  .home .body {
+    margin-left: 0;
+  }
+
+  .body .intro .links {
+    width: 70%;
+  }
+
+  .body .intro {
+    margin-left: 2rem;
+  }
+}
+
+/*
+@media (max-width: 376px) {
+}
+
+@media (max-width: 321px) {
+}
+
+@media (max-width: 321px) {
+} */
+
+@media (max-width: 281px) {
+  .body .intro {
+    margin-left: 1rem;
+  }
+
+  .body .intro h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 4rem;
+  }
 }

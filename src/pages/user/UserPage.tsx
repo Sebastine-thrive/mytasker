@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import TaskComponent from "../../components/features/tasks/taskcomponent/TaskComponent";
 import TaskForm from "../../components/taskform/TaskForm";
+import { motion } from "framer-motion";
+
 import "./userpage.css";
 
 type EditTaskHandler = (taskId: string) => void;
@@ -53,20 +55,31 @@ const UserPage = () => {
   };
 
   return (
-    <>
+    <div className="userpage-body">
       <div className={modalIsOpen ? "overlay" : ""}> </div>
       <div className="user-task-container">
         <div className="user-intro">
           {" "}
-          <h2>
+          <motion.h2
+            initial={{ x: -50, opacity: 0.5 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ delay: 1, duration: 2 }}
+          >
             {" "}
             welcome{" "}
             <span className="loggedin-username">
               {" "}
-              {loggedInUsername } <br />{" "}
+              {loggedInUsername} <br />{" "}
             </span>
-          </h2>
-          <h3> Manage your tasks </h3>
+          </motion.h2>
+          <motion.h3
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 2, duration: 2 }}
+          >
+            {" "}
+            Manage your tasks{" "}
+          </motion.h3>
         </div>
         <TaskComponent
           editedTitle={editedTitle}
@@ -98,7 +111,7 @@ const UserPage = () => {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

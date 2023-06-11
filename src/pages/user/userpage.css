@@ -1,21 +1,28 @@
-.user-task-container {
-  position: relative;
+.userpage-body {
   width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    to right,
+    rgba(18, 109, 254, 0.6),
+    rgba(255, 255, 255, 0.6),
+    rgba(0, 128, 0, 0.6)
+  );
+}
+.user-task-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: burlywood;
 }
 
 .user-intro {
   width: auto;
-  max-width: 1000px;
-  min-width: 460px;
-  background-color: var(--primaryDark);
-  color: var(--white);
-  border-top: 10px solid var(--primaryBlue);
+  max-width: 80vw;
+  min-width: 70vw;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 5px;
@@ -23,12 +30,12 @@
   margin-bottom: 1rem;
   padding: 5px;
   text-transform: capitalize;
+  font-weight: 700;
   letter-spacing: 0.8px;
   word-spacing: 4px;
 }
 
 .loggedin-username {
-  /* font-family: "DM Sans", sans-serif; */
   font-size: 1.4rem;
   color: var(--primaryBlue);
 }
@@ -38,6 +45,7 @@
   z-index: 2;
   top: 30vh;
   left: calc(50vw - 200px);
+  transition: all 0.7s ease;
 }
 
 .overlay {
@@ -52,4 +60,17 @@
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
   z-index: 2;
+}
+
+/* Media queries */
+@media (max-width: 415px) {
+  .userpage-body {
+    background: none;
+  }
+}
+
+@media (max-width: 375px) {
+  .user-intro {
+    margin-top: 8rem;
+  }
 }

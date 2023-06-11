@@ -6,7 +6,7 @@ interface User {
   password: string | null;
 }
 
-interface UserState {
+export interface UserState {
   users: User[];
 }
 

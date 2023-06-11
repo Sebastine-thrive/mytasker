@@ -1,9 +1,9 @@
 import React, { SetStateAction, FC, Dispatch, useState } from "react";
 import { RootState } from "../../../../store";
 import { useSelector } from "react-redux";
-import { Task } from "../TasksSlice";
 import "./task.css";
 import TaskItem from "../taskitem/TaskItem";
+import { motion } from "framer-motion";
 
 type EditTaskHandler = (taskId: string) => void;
 
@@ -19,12 +19,6 @@ interface UserPageProps {
   editedDescription: string;
   setEditedTitle: React.Dispatch<React.SetStateAction<string>>;
   setEditedDescription: React.Dispatch<React.SetStateAction<string>>;
-}
-
-interface User {
-  id: number;
-  username: string | null;
-  password: string | null;
 }
 
 const TaskComponent: FC<UserPageProps> = ({
@@ -64,7 +58,6 @@ const TaskComponent: FC<UserPageProps> = ({
   let userId: number;
   if (user) {
     userId = user.id as number;
-    // console.log("User ID:", userId);
   } else {
     console.log("User not found");
   }
@@ -77,7 +70,6 @@ const TaskComponent: FC<UserPageProps> = ({
     (state: RootState) => state.CategoryReducer.completedTasks[userId] || []
   );
 
-
   let ongoingTasks = [...allTasks];
 
   if (completedTasks.length > 0) {
@@ -89,10 +81,6 @@ const TaskComponent: FC<UserPageProps> = ({
     setAddingTask(true);
     setEditingTask(false);
   };
-  // const tasks = useSelector((state: RootState) => state?.TaskReducer[userId]);
-  console.log(allTasks);
-  console.log(completedTasks);
-  console.log(ongoingTasks);
 
   const setCategoriesFunc = (index: number) => {
     setSelectedItemFromList(index);
@@ -107,11 +95,16 @@ const TaskComponent: FC<UserPageProps> = ({
       : ongoingTasks;
 
   return (
-    <div className="task-wrapper">
+    <motion.div
+      initial={{ x: 50, opacity: 0.5 }}
+      whileInView={{ x: 0, opacity: 1 }}
+      transition={{ delay: 3, duration: 2 }}
+      className="task-wrapper"
+    >
       <div className="task-main-container">
         <div className="task-heading">
           {selectedCategory === "all" && (
-            <>
+            <div className="tasks-numbering">
               {allTasks.length === 0 && (
                 <h3 className="tasks-number">No tasks yet</h3>
               )}
@@ -119,13 +112,16 @@ const TaskComponent: FC<UserPageProps> = ({
                 <h3 className="tasks-number">{allTasks.length} task</h3>
               )}
               {allTasks.length > 1 && (
-                <h3 className="tasks-number"> {selectedCategory} {" "} {allTasks.length} tasks</h3>
+                <h3 className="tasks-number">
+                  {" "}
+                  {selectedCategory} {allTasks.length} tasks
+                </h3>
               )}
-            </>
+            </div>
           )}
 
           {selectedCategory === "completed" && (
-            <>
+            <div className="tasks-numbering">
               {completedTasks.length === 0 && (
                 <h3 className="tasks-number">
                   No {selectedCategory} tasks yet
@@ -141,11 +137,11 @@ const TaskComponent: FC<UserPageProps> = ({
                   {completedTasks.length} {selectedCategory} tasks
                 </h3>
               )}
-            </>
+            </div>
           )}
 
           {selectedCategory === "ongoing" && (
-            <>
+            <div className="tasks-numbering">
               {ongoingTasks.length === 0 && (
                 <h3 className="tasks-number">
                   No {selectedCategory} tasks yet
@@ -163,12 +159,8 @@ const TaskComponent: FC<UserPageProps> = ({
                   {ongoingTasks.length} {selectedCategory} tasks
                 </h3>
               )}
-            </>
+            </div>
           )}
-{/* 
-          <div className="task-category">
-            {selectedCategory === "all" ? <h3> {selectedCategory} </h3> : null}
-          </div> */}
 
           <div className="categories-wrapper">
             <h3
@@ -182,8 +174,7 @@ const TaskComponent: FC<UserPageProps> = ({
             {showCategoryOptions ? (
               <span
                 className="category-modal"
-                // onBlur={() => setShowCategoryOptions(false)}
-                onBlurCapture={() => setShowCategoryOptions(false)}
+                // onBlurCapture={() => setShowCategoryOptions(false)}
               >
                 <ul>
                   {categoryList.map((item: string, index: number) => (
@@ -206,15 +197,12 @@ const TaskComponent: FC<UserPageProps> = ({
               editedDescription={editedDescription}
               setEditedDescription={setEditedDescription}
               task={task}
-              addingTask={addingTask}
-              editingTask={editingTask}
               setAddingTask={setAddingTask}
               setEditingTask={setEditingTask}
-              modalIsOpen={modalIsOpen}
               setModalIsOpen={setModalIsOpen}
               onEditTask={onEditTask}
               selectedCategory={selectedCategory}
-              ongoingTasks = {ongoingTasks}
+              ongoingTasks={ongoingTasks}
             />
           ))}
         </div>
@@ -223,7 +211,7 @@ const TaskComponent: FC<UserPageProps> = ({
           <h4>Add Task</h4>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
