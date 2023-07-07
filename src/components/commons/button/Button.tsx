@@ -1,6 +1,12 @@
 import React from "react";
-import { ButtonProps } from "../../../types/ButtonProps";
-import "./button.css"
+import "./button.css";
+
+type ButtonProps = {
+  text: string;
+  onClick: () => void;
+  color: string;
+  backgroundColor: string;
+};
 
 const Button: React.FC<ButtonProps> = ({
   text,

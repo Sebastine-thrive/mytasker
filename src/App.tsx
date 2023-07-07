@@ -8,24 +8,24 @@ import "./App.css";
 import SignUpPage from "./pages/signup/SignUpPage";
 import SignInPage from "./pages/signin/SignInPage";
 
-// interface ProtectedRouteProps {
-//   isLoggedIn: boolean | null;
-//   children: ReactNode ;
-// }
+interface ProtectedRouteProps {
+  isLoggedIn: boolean | null;
+  children: ReactNode;
+}
 
 const App: React.FC = () => {
-  const [userId, setUserId] = useState<number | null>(null);
+  // const [userId, setUserId] = useState<number | null>(null);
   const [isLoggedIn, setisLoggedIn] = useState<boolean | null>(null);
-  const [counter, setCounter] = useState<number>(1);
+  // const [counter, setCounter] = useState<number>(1);
 
   //Protectd Routes
 
-  // const ProtectedRoute: React.FC<ProtectedRouteProps> =({ isLoggedIn, children }) => {
-  //   if (!isLoggedIn) {
-  //     return <Navigate to="/signin" replace />;
-  //   }
-  //   return children;
-  //  };
+  const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
+    if (!isLoggedIn) {
+      return <Navigate to="/signin" replace />;
+    }
+    return <>{children}</>;
+  };
 
   return (
     <BrowserRouter>
@@ -35,7 +35,8 @@ const App: React.FC = () => {
 
           <Route
             path="/signup"
-            element={<SignUpPage userId={userId} setUserId={setUserId} />}
+            element={<SignUpPage 
+              />}
           />
 
           <Route
@@ -43,14 +44,15 @@ const App: React.FC = () => {
             element={<SignInPage setisLoggedIn={setisLoggedIn} />}
           />
 
-          <Route path="/user" element={<UserPage />} />
 
-          {/* <Route
-            path="/userpage"
+          <Route
+            path="/user"
             element={
-              <ProtectedRoute isLoggedIn={isLoggedIn}>{<UserPage />}</ProtectedRoute>
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                {<UserPage />}
+              </ProtectedRoute>
             }
-          /> */}
+          />
         </Routes>
       </div>
     </BrowserRouter>

@@ -15,13 +15,13 @@ import { addUser } from "../features/users/UserSlice";
 //  CSS file for styling
 import "./signup.css";
 
-interface User {
+export interface User {
   id: number;
   username: string | null;
   password: string | null;
 }
 
-const SignUp = () => {
+const SignUp: React.FC = () => {
   const dispatch = useDispatch();
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");

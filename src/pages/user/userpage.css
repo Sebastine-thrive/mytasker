@@ -1,12 +1,14 @@
 .userpage-body {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(
+  /* background: linear-gradient(
     to right,
     rgba(18, 109, 254, 0.6),
     rgba(255, 255, 255, 0.6),
     rgba(0, 128, 0, 0.6)
-  );
+  ); */
+
+  
 }
 .user-task-container {
   width: 100%;

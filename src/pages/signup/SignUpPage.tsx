@@ -1,13 +1,15 @@
-import React, { SetStateAction, Dispatch } from "react";
+import React
+// { SetStateAction, Dispatch } 
+from "react";
 import SignUp from "../../components/signup/SignUp";
 import "./sign-up-page.css";
 
-interface UserIdProps {
-  userId: number | null;
-  setUserId: Dispatch<SetStateAction<number | null>>;
-}
+// interface UserIdProps {
+//   userId: number | null;
+//   setUserId: Dispatch<SetStateAction<number | null>>;
+// }
 
-const SignUpPage: React.FC<UserIdProps> = ({ userId, setUserId }) => {
+const SignUpPage: React.FC = () => {
   return (
     <div className="form-container">
       <SignUp />

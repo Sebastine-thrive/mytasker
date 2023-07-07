@@ -147,7 +147,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
                       selectedTaskId === task.id ? "show" : "hidden"
                     }`}
                   >
-                    <h5> Delete Task?</h5>
+                    <h5> Delete this Task?</h5>
                     <div className="task-options">
                       {" "}
                       <p
@@ -203,7 +203,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
                       selectedTaskId === task.id ? "show" : "hidden"
                     }`}
                   >
-                    <h5> Reverse completed task as uncompleted ?</h5>
+                    <h5> Reverse this completed task as uncompleted ?</h5>
                     <div className="task-options">
                       {" "}
                       <p
@@ -245,7 +245,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
                       selectedTaskId === task.id ? "show" : "hidden"
                     }`}
                   >
-                    <h5> Mark task as complete ?</h5>
+                    <h5> Mark this task as complete ? </h5>
                     <div className="task-options">
                       {" "}
                       <p
