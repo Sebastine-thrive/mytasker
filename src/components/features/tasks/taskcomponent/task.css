@@ -1,12 +1,10 @@
 .task-wrapper {
   width: auto;
-  max-width: 80vw;
+  max-width: 90vw;
   display: flex;
   justify-content: center;
   text-transform: capitalize;
   position: relative;
-  /* margin-top: 3rem; */
-  /* margin-bottom: 2rem; */
 }
 
 .task-categories-container {
@@ -14,7 +12,7 @@
 }
 
 .task-main-container {
-  width: auto;
+  width: 80vw;
   max-width: 80vw;
   min-width: 60vw;
   background-color: var(--secondaryAsh);
@@ -90,7 +88,6 @@
 .add-task h4 {
   width: 6rem;
   padding: 0.2rem 0.4rem;
-  border: 2px solid var(--primaryDark);
   border-radius: 25px;
   background-color: var(--primaryBlue);
   color: var(--white);
@@ -205,7 +202,6 @@
   }
 }
 
-
 @media (max-width: 376px) {
   .categories-wrapper .category-modal {
     top: 15%;
@@ -213,7 +209,6 @@
     z-index: 3;
   }
 }
-
 
 @media (max-width: 321px) {
 }

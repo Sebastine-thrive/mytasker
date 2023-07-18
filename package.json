@@ -5,11 +5,11 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@syncfusion/ej2-react-popups": "^21.2.4",
+    "@testing-library/react": "^14.0.0",
     "@tippyjs/react": "^4.2.6",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.31",
     "@types/react": "^18.2.6",
-    "@testing-library/react": "^14.0.0",
     "@types/react-dom": "^18.2.4",
     "@types/uuid": "^9.0.1",
     "framer-motion": "^10.12.16",
@@ -51,6 +51,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.22.5",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",

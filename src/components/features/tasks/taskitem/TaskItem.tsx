@@ -6,7 +6,6 @@ import { MdCancel } from "react-icons/md";
 import { FaCheckCircle } from "react-icons/fa";
 import { BsFillPencilFill } from "react-icons/bs";
 
-import "./taskitem.css";
 import {
   markTaskAsCompleted,
   markTaskAsUncompleted,
@@ -14,6 +13,8 @@ import {
 
 import { Tooltip } from "react-tooltip";
 import "react-toastify/dist/ReactToastify.css";
+import "./taskitem.css";
+
 
 type EditTaskHandler = (taskId: string) => void;
 
@@ -116,7 +117,6 @@ const TaskItem: React.FC<TaskItemProps> = ({
 
   const isTaskCompleted = completedTasks.some((t) => task.id === t.id);
 
-  console.log(isTaskCompleted); // Output: true or false
 
   return (
     <div className="taskitem-wrapper">
